@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.nav-links span {
+  margin-right: 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.nav-links .active {
+  border-bottom: 2px solid black;
+  padding-bottom: 4px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.activity-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  color: #000;
+}
+
+.profile {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
