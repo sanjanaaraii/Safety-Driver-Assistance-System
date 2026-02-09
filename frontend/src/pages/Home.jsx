@@ -1,16 +1,15 @@
 import Navbar from "../components/Navbar";
-import BookingCard from "../components/BookingCard";
 import MapView from "../components/MapView";
-import "../styles/Home.css";
+import BookingCard from "../components/BookingCard";
+import "../styles/home.css";
+import "../styles/Navbar.css";
 
 export default function Home() {
   return (
-    <>
+    <div className="home">
       <Navbar />
-      <div className="home">
-        <BookingCard />
-        <MapView />
-      </div>
-    </>
+      <MapView />
+      <BookingCard />
+    </div>
   );
 }

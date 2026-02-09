@@ -1,47 +1,87 @@
 .navbar {
+  height: 64px;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 30px;
-  border-bottom: 1px solid #e5e5e5;
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
+  padding: 0 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 36px;
 }
 
 .logo {
-  font-weight: bold;
   font-size: 22px;
-}
-
-.nav-links span {
-  margin-right: 20px;
+  font-weight: 600;
+  color: #111;
   cursor: pointer;
-  font-weight: 500;
 }
 
-.nav-links .active {
-  border-bottom: 2px solid black;
-  padding-bottom: 4px;
-}
-
-.nav-right {
+.primary-nav {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 28px;
 }
 
-.activity-btn {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: none;
-  background: #eee;
+.nav-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
   cursor: pointer;
-  color: #000;
+  position: relative;
 }
 
-.profile {
-  font-size: 20px;
+.dropdown-menu {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 8px 0;
+  min-width: 160px;
+  z-index: 1001;
+}
+
+.dropdown-menu span {
+  display: block;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #111;
+  white-space: nowrap;
+}
+
+.dropdown-menu span:hover {
+  background: #f5f5f5;
+}
+
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.profile-pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
 }
-
-

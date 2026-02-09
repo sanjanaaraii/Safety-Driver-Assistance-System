@@ -1,19 +1,43 @@
-import "../styles/Navbar.css";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [aboutOpen, setAboutOpen] = useState(false);
+
   return (
-    <nav className="navbar">
-      <div className="logo">SDAC</div>
+    <header className="navbar">
+    
+      <div className="navbar-left">
+        <span className="logo">SDAC</span>
 
-      <div className="nav-links">
-        <span className="active">Book a driver</span>
-        <span>Safety</span>
+        <nav className="primary-nav">
+          <span className="nav-item">Safety</span>
+
+          <div
+            className="nav-item dropdown"
+            onMouseEnter={() => setAboutOpen(true)}
+            onMouseLeave={() => setAboutOpen(false)}
+          >
+            About ▾
+            {aboutOpen && (
+              <div className="dropdown-menu">
+                <span>How it works</span>
+                <span>Our mission</span>
+                <span>Contact</span>
+              </div>
+            )}
+          </div>
+        </nav>
       </div>
 
-      <div className="nav-right">
-        <button className="activity-btn">Activity</button>
-        <div className="profile">👤</div>
+      
+      <div className="navbar-right">
+        <span className="nav-item">Help</span>
+        <span className="nav-item">Activity</span>
+
+        <div className="profile-pill">
+          Profile ▾
+        </div>
       </div>
-    </nav>
+    </header>
   );
 }

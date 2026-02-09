@@ -1,9 +1,60 @@
 .home {
-  display: flex;
-  gap: 350px;
-  padding: 32px;
-max-width: 1400px; 
+  height: 100vh;
+  position: relative;
+}
 
-  margin: 0 auto;
-  align-items: flex-start;
+/* Map */
+.map-container {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Floating booking card */
+.booking-card {
+  position: absolute;
+  top: 120px;
+  left: 30px;
+  width: 320px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+.booking-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.booking-card button {
+  width: 100%;
+  padding: 12px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .booking-card {
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+    bottom: 20px;
+    width: 90%;
+  }
 }
