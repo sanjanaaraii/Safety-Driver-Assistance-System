@@ -1,6 +1,6 @@
 import "../styles/profileDropdown.css";
 
-function ProfileDropdown() {
+export default function ProfileDropdown() {
   return (
     <div className="profile-dropdown">
       <div className="profile-header">

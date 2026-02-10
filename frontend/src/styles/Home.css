@@ -29,6 +29,7 @@
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   z-index: 20;
+  color: white;
 }
 
 .booking-card input {
@@ -37,6 +38,7 @@
   margin-bottom: 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  
 }
 
 .booking-card button {
