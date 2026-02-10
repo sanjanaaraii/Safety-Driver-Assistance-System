@@ -1,8 +1,10 @@
 from fastapi import FastAPI
-from app.api.v1 import health
+from backend.api.v1 import health, auth
 
 app = FastAPI(title="SDAS Backend")
 
+
+app.include_router(auth.router, prefix="/api/v1")
 app.include_router(health.router, prefix="/api/v1")
 
 @app.get("/")
