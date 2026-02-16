@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getAuthStatus } from "../api/auth";
-
+import { useNavigate } from "react-router-dom";
 export default function BookingCard() {
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
@@ -11,7 +11,9 @@ export default function BookingCard() {
 
     try {
       const auth = await getAuthStatus();
+      const navigate = useNavigate();
 
+navigate("/login");
       if (!auth.isLoggedIn) {
         window.location.href = "/login";
         return;

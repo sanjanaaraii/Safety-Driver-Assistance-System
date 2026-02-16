@@ -1,6 +1,15 @@
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../api/auth";
 import "../styles/profileDropdown.css";
 
 export default function ProfileDropdown() {
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await logoutUser();
+    navigate("/login");
+  };
+
   return (
     <div className="profile-dropdown">
       <div className="profile-header">
@@ -21,7 +30,9 @@ export default function ProfileDropdown() {
         <div className="list-item">Trip history</div>
       </div>
 
-      <button className="signout-btn">Sign out</button>
+      <button className="signout-btn" onClick={handleSignOut}>
+        Sign out
+      </button>
     </div>
   );
 }

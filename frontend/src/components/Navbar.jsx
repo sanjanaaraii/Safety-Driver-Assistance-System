@@ -1,15 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
 import "../styles/navbar.css";
 
 export default function Navbar() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header className="navbar">
       <div className="navbar-left">
-        <span className="logo">SDAC</span>
+        <span className="logo" onClick={() => navigate("/")}>
+          SDAC
+        </span>
 
         <nav className="primary-nav">
           <span className="nav-item">Safety</span>
@@ -32,7 +36,10 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-right">
-        <span className="nav-item">Help</span>
+        <span className="nav-item" onClick={() => navigate("/help")}>
+          Help
+        </span>
+
         <span className="nav-item">Activity</span>
 
         <div className="profile-wrapper">
