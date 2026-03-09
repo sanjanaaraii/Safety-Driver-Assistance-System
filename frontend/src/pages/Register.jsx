@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { loginUser } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../api/auth";
 import "../styles/login.css";
 
-export default function Login() {
+export default function Register() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
+    name: "",
     email: "",
     password: ""
   });
@@ -24,14 +28,15 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await loginUser(form);
+      const response = await registerUser(form);
 
       if (response.success) {
-        localStorage.setItem("token", response.token);
-        window.location.href = "/";
+        // redirect to login page
+        navigate("/login");
       }
+
     } catch (err) {
-      setError(err.message || "Login failed");
+      setError(err.message || "Registration failed");
     } finally {
       setLoading(false);
     }
@@ -40,9 +45,18 @@ export default function Login() {
   return (
     <div className="login-page">
       <div className="login-card">
-        <h2>Login</h2>
+        <h2>Register</h2>
 
         <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
+
           <input
             type="email"
             name="email"
@@ -62,16 +76,11 @@ export default function Login() {
           />
 
           <button type="submit" disabled={loading}>
-            {loading ? "Signing in..." : "Login"}
+            {loading ? "Creating..." : "Register"}
           </button>
 
           {error && <p className="error">{error}</p>}
         </form>
-
-        <p className="register-link">
-          Don't have an account? <a href="/register">Register</a>
-        </p>
-
       </div>
     </div>
   );

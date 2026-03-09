@@ -58,4 +58,19 @@ export async function getAuthStatus() {
   });
 }
 
+export async function registerUser(data) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
 
+      if (!data.email || !data.password) {
+        reject({ message: "All fields are required" });
+      } else {
+        resolve({
+          success: true,
+          message: "User registered successfully"
+        });
+      }
+
+    }, 1000); // simulate server delay
+  });
+}

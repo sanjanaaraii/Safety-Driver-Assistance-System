@@ -16,24 +16,33 @@ export default function Navbar() {
         </span>
 
         <nav className="primary-nav">
-          <span className="nav-item">Safety</span>
+          <span className="nav-item" onClick={() => navigate("/safety")}>
+            Safety
+          </span>
 
-          <div
-            className="nav-item dropdown"
-            onMouseEnter={() => setAboutOpen(true)}
-            onMouseLeave={() => setAboutOpen(false)}
-          >
-            About ▾
-            {aboutOpen && (
-              <div className="dropdown-menu">
-                <span>How it works</span>
-                <span>Our mission</span>
-                <span>Contact</span>
-              </div>
-            )}
-          </div>
-        </nav>
-      </div>
+          <div className="nav-item dropdown">
+              <span onClick={() => setAboutOpen(prev => !prev)}>
+                About ▾
+              </span>
+
+              {aboutOpen && (
+                <div className="dropdown-menu">
+                  <span onClick={() => navigate("/how-it-works")}>
+                    How it works
+                  </span>
+
+                  <span onClick={() => navigate("/mission")}>
+                    Our mission
+                  </span>
+
+                  <span onClick={() => navigate("/contact")}>
+                    Contact
+                  </span>
+                </div>
+              )}
+            </div>
+            </nav>
+            </div>
 
       <div className="navbar-right">
         <span className="nav-item" onClick={() => navigate("/help")}>
