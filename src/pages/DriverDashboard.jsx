@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
 import { supabase } from '../lib/supabase'
 import MapVisual from '../components/MapVisual'
+import AnalyticsSection from '../components/AnalyticsSection'
 
 function JobsSection({ isOnline, onAccept, addToast }) {
   const [jobs, setJobs] = useState([])
@@ -309,6 +310,7 @@ const SIDEBAR = [
   { id: 'jobs', icon: '📋', label: 'Available Jobs' },
   { id: 'active', icon: '🚗', label: 'Active Trip' },
   { id: 'earnings', icon: '💰', label: 'Earnings' },
+  { id: 'analytics', icon: '📊', label: 'Analytics' },
   { id: 'profile', icon: '👤', label: 'Profile' },
 ]
 
@@ -319,12 +321,32 @@ export default function DriverDashboard() {
   const [acceptedJob, setAcceptedJob] = useState(null)
   const [tripStatus, setTripStatus] = useState(null)
 
+  // Mark driver offline when they leave the page or close the tab
+  useEffect(() => {
+    const markOffline = () => {
+      if (supabase && user?.id) {
+        // Use sendBeacon-style fire-and-forget for tab close
+        supabase.from('drivers').update({ is_available: false }).eq('id', user.id)
+      }
+    }
+    window.addEventListener('beforeunload', markOffline)
+    return () => {
+      window.removeEventListener('beforeunload', markOffline)
+      markOffline() // also fires on component unmount (logout/navigate away)
+    }
+  }, [user?.id])
+
   const handleToggle = async (v) => {
+    // If going offline mid-trip, warn but allow
+    if (!v && acceptedJob) {
+      addToast('⚠️ You have an active trip — complete it before going offline', 'warning')
+      return
+    }
     setIsOnline(v)
     if (supabase) {
       await supabase.from('drivers').update({ is_available: v }).eq('id', user.id)
     }
-    addToast(v ? '🟢 You are now online' : '⭕ You are now offline', v ? 'success' : 'info')
+    addToast(v ? '🟢 You are now online — passengers can see you' : '⭕ You are now offline — hidden from passengers', v ? 'success' : 'info')
   }
 
   const handleAccept = async (job) => {
@@ -364,6 +386,7 @@ export default function DriverDashboard() {
     jobs: ['Available Jobs', 'Live booking requests from passengers'],
     active: ['Active Trip', 'Manage your current trip'],
     earnings: ['Earnings', 'Your income summary'],
+    analytics: ['Analytics', 'Your performance insights & trip patterns'],
     profile: ['Driver Profile', 'Manage your account & vehicle'],
   }
 
@@ -400,6 +423,7 @@ export default function DriverDashboard() {
         {section === 'jobs' && <JobsSection isOnline={isOnline} onAccept={handleAccept} addToast={addToast} />}
         {section === 'active' && <ActiveSection job={acceptedJob} tripStatus={tripStatus} onStart={handleStartTrip} onComplete={handleCompleteTrip} addToast={addToast} />}
         {section === 'earnings' && <EarningsSection user={user} />}
+        {section === 'analytics' && <AnalyticsSection user={user} />}
         {section === 'profile' && <ProfileSection user={user} addToast={addToast} />}
       </main>
     </div>

@@ -5,7 +5,7 @@ import LandingPage from './pages/LandingPage'
 import AuthPage from './pages/AuthPage'
 import UserDashboard from './pages/UserDashboard'
 import DriverDashboard from './pages/DriverDashboard'
-
+import "leaflet/dist/leaflet.css";
 function ProtectedRoute({ children, requiredRole }) {
   const { user } = useApp()
   if (!user) return <Navigate to="/login" replace />
