@@ -18,3 +18,22 @@ export function truncateString(str, length = 50) {
   if (!str || str.length <= length) return str;
   return str.slice(0, length) + '...';
 }
+
+/**
+ * Checks if a string is empty or contains only whitespace.
+ * @param {string} str 
+ * @returns {boolean}
+ */
+export function isStringEmpty(str) {
+  return !str || str.trim().length === 0;
+}
+
+/**
+ * Reverses the given string.
+ * @param {string} str 
+ * @returns {string}
+ */
+export function reverseString(str) {
+  if (!str) return '';
+  return str.split('').reverse().join('');
+}
